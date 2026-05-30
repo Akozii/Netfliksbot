@@ -2,8 +2,11 @@ name: Netflix Household Auto-Confirm
 
 on:
   schedule:
-    - cron: '*/5 * * * *'    # her ~5 dakikada bir
-  workflow_dispatch:          # elle "Run workflow" butonu
+    - cron: '*/1 * * * *'    # her ~1 dakikada bir
+  workflow_dispatch:
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true   # Node 20 uyarısını giderir
 
 jobs:
   confirm:
