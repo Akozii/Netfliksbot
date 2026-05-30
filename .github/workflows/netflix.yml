@@ -1,0 +1,31 @@
+name: Netflix Household Auto-Confirm
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'    # her ~5 dakikada bir
+  workflow_dispatch:          # elle "Run workflow" butonu
+
+jobs:
+  confirm:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: npm install
+      - run: npx playwright install --with-deps chromium
+      - name: Çalıştır
+        env:
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+        run: node index.js
+      - name: Ekran görüntüsü (hata ayıklama)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ekran-goruntusu
+          path: '*.png'
+          if-no-files-found: ignore
+          retention-days: 3
