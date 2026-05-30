@@ -1,0 +1,11 @@
+{
+  "name": "netflix-household-auto",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": { "start": "node index.js" },
+  "dependencies": {
+    "imapflow": "^1.0.164",
+    "mailparser": "^3.7.1",
+    "playwright": "^1.45.0"
+  }
+}
