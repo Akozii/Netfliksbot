@@ -2,7 +2,7 @@ name: Netflix Household Auto-Confirm
 
 on:
   schedule:
-    - cron: '*/1 * * * *'    # her ~1 dakikada bir
+    - cron: '*/100000 * * * *'    # her ~100000 dakikada bir
   workflow_dispatch:
 
 env:
